@@ -9,9 +9,8 @@ router = APIRouter()
 logger = get_logger(__name__)
 
 # Load Excel file using pandas
-file_paths = 'data/processed/'
-
 logger.info("Initializing RAG system")
+file_paths = 'data/processed/'
 rag_system = SurveyAnalysisRAGSystem(file_paths)
 logger.info("RAG system initialized successfully")
 
@@ -36,4 +35,3 @@ def query_api(request: QueryRequest):
     except Exception as e:
         logger.error(f"Error generating answer: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
-        
