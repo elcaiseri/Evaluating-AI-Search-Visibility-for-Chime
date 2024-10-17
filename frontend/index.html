@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI-Powered Survey Insights</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>AI-Powered Survey Insights</h1>
+        <div class="form-group">
+            <label for="query">Enter your question:</label>
+            <input type="text" id="query" name="query" placeholder="e.g., How important is sustainability to consumers?">
+        </div>
+        <div class="form-group">
+            <label for="dataset">Select Dataset:</label>
+            <select id="dataset" name="dataset">
+                <option value="sustainability">Sustainability Survey</option>
+                <option value="christmas">Christmas Survey</option>
+            </select>
+        </div>
+        <button id="submitBtn">Get Insights</button>
+        <div id="loading" class="loading" style="display:none;">Loading...</div>
+        <div id="error" class="error"></div>
+        <div id="answer" class="answer"></div>
+        <div id="time" class="time"></div>
+    </div>
+
+    <!-- Include the JavaScript code -->
+    <script src="js/scripts.js"></script>
+</body>
+</html>
