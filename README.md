@@ -60,7 +60,15 @@ The project consists of:
 
 	*Note: Replace the placeholders with actual values. Do not commit this file to version control.*
 
-3. **Build and Run the Containers:**
+3. **Prepare the Data:**
+
+	Run the exploratory data analysis script to prepare the datasets:
+
+	```sh
+	python eda.py
+	```
+
+4. **Build and Run the Containers:**
 
 	Use Docker Compose to build and start the services:
 
