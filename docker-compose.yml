@@ -6,6 +6,8 @@ services:
       - "8000:8000"
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - FRONTEND_URL=${FRONTEND_URL}
+      - APP_TOKEN=${APP_TOKEN}
     volumes:
       - ./backend/data:/app/data
     networks:
@@ -16,6 +18,9 @@ services:
     container_name: frontend
     ports:
       - "5500:80"
+    environment:
+      - BACKEND_URL=${BACKEND_URL}
+      - APP_TOKEN=${APP_TOKEN}
     networks:
       - app-network
     depends_on:
