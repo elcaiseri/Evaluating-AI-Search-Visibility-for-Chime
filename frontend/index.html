@@ -26,6 +26,11 @@
     </div>
 
     <!-- Include the JavaScript code -->
-    <script src="js/scripts.js"></script>
-</body>
+    <script>
+        window.env = {
+          BACKEND_URL: "$BACKEND_URL",
+          APP_TOKEN: "$APP_TOKEN"
+        };
+      </script>
+      <script src="js/scripts.js"></script></body>
 </html>
