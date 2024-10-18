@@ -1,12 +1,35 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from routers.query import router as query_router
+import os
 
+# Get frontend URL and API key from environment variables
+FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5500")
+API_KEY = os.getenv("APP_TOKEN")
+
+print(f"Allowed Frontend URL: {FRONTEND_URL}")
+
+# Initialize FastAPI application
 app = FastAPI(
     title="RAG Backend System",
-    description="A FastAPI application for analysing and comparing survey datasets using AI.",
+    description="A FastAPI application for analyzing and comparing survey datasets using AI.",
     version="1.0.0"
 )
+
+# CORS middleware for the frontend only
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[FRONTEND_URL],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Dependency to check API key
+def verify_api_key(request: Request):
+    api_key = request.headers.get("x-api-key")
+    if api_key != API_KEY:
+        raise HTTPException(status_code=401, detail="Unauthorized")
 
 @app.get("/")
 async def index():
@@ -16,13 +39,4 @@ async def index():
 async def health():
     return {"status": "healthy"}
 
-app.include_router(query_router)
-
-# Allow CORS from your frontend origin
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # For development purposes. In production, specify your frontend URL.
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+app.include_router(query_router, dependencies=[Depends(verify_api_key)])

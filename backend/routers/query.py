@@ -28,7 +28,7 @@ def query_api(request: QueryRequest):
         raise HTTPException(status_code=400, detail="Query cannot be empty")
     
     try:
-        top_k = 16 if dataset == "sustainability" else 6
+        top_k = 15 if dataset == "sustainability" else 6
         output = rag_system.generate_answer(query, dataset, top_k)
         logger.info(f"Generated answer: {output['result']} in {output['time_taken']:.2f} sec")
         return QueryResponse(answer=output['result'], time=output['time_taken'])
