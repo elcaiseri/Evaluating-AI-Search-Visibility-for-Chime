@@ -36,7 +36,7 @@ class RAGSystem:
         )
         
         # Initialize the language model for generating insights
-        self.llm = ChatOpenAI(model=self.llm_model, temperature=kwargs.get('temperature', 0.1), max_tokens=kwargs.get('max_tokens', 1024))
+        self.llm = ChatOpenAI(model=self.llm_model, temperature=kwargs.get('temperature', 0.1), max_tokens=kwargs.get('max_tokens', 512))
 
         # Setup prompt template for query generation
         self.prompt = PromptTemplateFactory.create_prompt_template()
@@ -55,7 +55,7 @@ class RAGSystem:
     def format_docs(docs):    
         return "\n\n".join("Brand Page URL: ( " + str(doc.metadata["url"]) + " )" + "\n" + doc.page_content for doc in docs)
 
-    def generate_answer(self, query):
+    def search(self, query):
         """Generate an answer for the given query using the specified dataset."""
         logger.info(f"Generating answer for query: {query}")
         st = time()
@@ -63,3 +63,20 @@ class RAGSystem:
         output = {"result" : self.qa_chain.invoke(query)}
         output["time_taken"] = time() - st
         return output
+    
+    def evaluate_w_ragas(self, query, contexts, answer, ground_truth):
+        examples = [
+            {
+                "question": query,
+                "contexts": [contexts],
+                "answer": answer,
+                "ground_truth": ground_truth
+            }
+        ]
+
+        dataset = Dataset.from_list(examples)
+        metrics = evaluate(dataset)
+        
+        return metrics
+    
+    
