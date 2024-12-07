@@ -1,25 +1,40 @@
-# Ignore node_modules
-node_modules
+# Ignore node_modules directory
+node_modules/
 
-# Ignore logs
-logs
+# Ignore log files
 *.log
 
-# Ignore temporary files
-tmp
-*.tmp
-
-# Ignore build directories
-dist
-build
-
-# Ignore .git directory
-.git
-
-# Ignore Python bytecode cache directories
-__pycache__
-
+# Ignore environment variable files
 .env
 *.env
 
+# Ignore build directories
+dist/
+build/
+
+# Ignore OS generated files
+.DS_Store
+Thumbs.db
+
+# Ignore IDE specific files
+.vscode/
+.idea/
+
+# Ignore compiled files
+*.o
+*.out
+*.class
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+
+others/
+
 *.ipynb
+
+*.xlsx
+
+*.txt
+
+venv/
