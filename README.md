@@ -1,10 +1,7 @@
-# AI-Powered Survey Insights
+# Evaluating AI Search Visibility for Chime
 
 ## Project Description
-AI-Powered Survey Insights is a web application that leverages advanced AI models to process and analyze user queries related to two survey datasets using Retrieval-Augmented Generation (RAG). This tool provides actionable insights from:
-
-- **Dataset 1:** Sustainability Research Results
-- **Dataset 2:** Christmas Research Results
+Assess Chime’s visibility and discoverability on AI search platforms and Large Language Models (LLMs) compared to competitors: Ally Bank, Varo, Capital One, and SoFi Bank. The task involves designing and implementing a framework to evaluate each brand’s presence and relevance on selected AI platforms.
 
 The project consists of:
 
@@ -28,7 +25,6 @@ The project consists of:
 
 - **Interactive Query Interface:** Users can ask questions about the survey datasets in natural language.
 - **AI-Generated Insights:** Retrieves precise answers using OpenAI’s models.
-- **Dataset Comparison:** Compare insights between Sustainability and Christmas survey datasets.
 - **User-Friendly Interface:** Clean, intuitive UI for easy interaction.
 - **Dockerized Setup:** Simple container-based deployment with Docker Compose.
 
@@ -65,7 +61,8 @@ The project consists of:
 	Run the exploratory data analysis script to prepare the datasets:
 
 	```sh
-	python eda.py
+	pip install -r requirements.txt
+	python scraping/scraper.py
 	```
 
 4. **Build and Run the Containers:**
