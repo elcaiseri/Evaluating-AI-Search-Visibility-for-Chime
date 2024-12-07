@@ -100,23 +100,6 @@ The backend exposes a POST endpoint for querying datasets.
 - **Method:** POST
 - **Description:** Processes a user query and returns AI-generated insights.
 
-**Request Body Example:**
-
-```json
-{
-  "query": "How important is sustainability to consumers?",
-  "dataset": "sustainability"
-}
-```
-
-**Response Example:**
-
-```json
-{
-  "answer": "Sustainability is highly important to consumers, with 75% preferring eco-friendly products."
-}
-```
-
 **Error Handling:**
 
 - If the request fails, the API returns an appropriate HTTP status code and an error message.
