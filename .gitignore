@@ -34,3 +34,7 @@ others/
 *.ipynb
 
 *.xlsx
+
+*.txt
+
+venv/
