@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from routers.models import QueryRequest, QueryResponse
-from rag.survey import SurveyAnalysisRAGSystem
+from rag.survey import RAGSystem
 from utils.logging import get_logger
 import uuid
 
@@ -10,8 +10,9 @@ logger = get_logger(__name__)
 
 # Load Excel file using pandas
 logger.info("Initializing RAG system")
-file_paths = 'data/processed/'
-rag_system = SurveyAnalysisRAGSystem(file_paths)
+file_paths = 'data/'
+json_path = 'data/file2url.json'
+rag_system = RAGSystem(file_paths, json_path)
 logger.info("RAG system initialized successfully")
 
 @router.post("/query", response_model=QueryResponse)
@@ -28,8 +29,7 @@ def query_api(request: QueryRequest):
         raise HTTPException(status_code=400, detail="Query cannot be empty")
     
     try:
-        top_k = 15 if dataset == "sustainability" else 6
-        output = rag_system.generate_answer(query, dataset, top_k)
+        output = rag_system.generate_answer(query)
         logger.info(f"Generated answer: {output['result']} in {output['time_taken']:.2f} sec")
         return QueryResponse(answer=output['result'], time=output['time_taken'])
     except Exception as e:
