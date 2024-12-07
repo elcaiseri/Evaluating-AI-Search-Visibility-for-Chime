@@ -39,7 +39,7 @@ document.getElementById('submitBtn').addEventListener('click', function () {
             if (data.detail) {
                 errorDiv.textContent = data.detail;
             } else {
-                answerDiv.innerHTML = `<h3>AI-Generated Answer</h3><p>${data.answer}</p>`;
+                answerDiv.innerHTML = `### AI-Generated Answer: ${data.answer}`;
                 timeDiv.innerHTML = `<hr><p>Response Time: ${(data.time * 1000).toFixed(1)} ms.</p>`;
             }
         })
