@@ -25,13 +25,14 @@ class PromptTemplateFactory:
                             "AI-friendliness, and authority signals.\n"
                             "2. Compare Chime’s visibility to its competitors using the provided context.\n"
                             "3. Propose a ranking or scoring system to measure AI search visibility.\n"
-                            "4. Suggest strategies to enhance Chime’s visibility based on the analysis.\n\n"
+                            "4. Suggest strategies to enhance Chime’s visibility based on the analysis.\n"
+                            "5.	Include URLs for each mentioned source to validate and enhance the answer.\n\n"
                             "Additionally, integrate a Retrieval-Augmented Generation (RAG) system to enrich responses "
                             "with accurate and contextual data from the brand’s official website and other reliable sources. "
                             "Use the retrieved context provided below to formulate an insightful and actionable response.\n\n"
                             "Question: {question}\n"
                             "Context: {context}\n"
-                            "Answer:"
+                            "Answer:\n\n"
                         )
                     )
                 )
