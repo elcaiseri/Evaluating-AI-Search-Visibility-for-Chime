@@ -39,8 +39,8 @@ The project consists of:
 1. **Clone the Repository:**
 
 	```sh
-	git clone https://github.com/elcaiseri/Survey-Analysis-RAG-System.git
-	cd Survey-Analysis-RAG-System
+	git clone https://github.com/elcaiseri/Evaluating-AI-Search-Visibility-for-Chime.git
+	cd Evaluating-AI-Search-Visibility-for-Chime
 	```
 
 2. **Set Up Environment Variables:**
