@@ -77,20 +77,9 @@ The project consists of:
 
 ## Usage Instructions
 
-1. **Access the Application:**
+**Access the Application:**
 
 	Open your browser and go to `http://localhost:5500`.
-
-2. **Interact with the Application:**
-
-	- Enter a query in the input field (e.g., “How important is sustainability to consumers?”).
-	- Select the relevant dataset from the dropdown (Sustainability or Christmas).
-	- Click **Get Insights** to submit your query.
-
-3. **View Results:**
-
-	- The AI-generated response will be displayed below the form.
-	- If there’s an error, it will be shown in the error message section.
 
 ## API Documentation
 
