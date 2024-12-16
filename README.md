@@ -9,6 +9,9 @@ The project consists of:
 - **Frontend:** A simple HTML/CSS/JavaScript interface served using Nginx.
 - **Dockerized Deployment:** Both backend and frontend are containerized for easy deployment using Docker and Docker Compose.
 
+
+<img width="1250" alt="image" src="https://github.com/user-attachments/assets/63f43ea4-2de5-495b-a624-06579cb91dac" />
+
 ## Table of Contents
 
 - [Features](#features)
