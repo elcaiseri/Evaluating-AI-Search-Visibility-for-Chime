@@ -20,6 +20,7 @@ The project consists of:
 - [Deployment](#deployment)
 - [License](#license)
 - [Acknowledgements](#acknowledgements)
+- [Report](#report)
 
 ## Features
 
@@ -157,3 +158,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 - **Community Resources:** Tutorials and documentation that helped shape this project.
 
 Feel free to contribute to this project by opening issues or submitting pull requests. If you have any questions, contact us at iqasem4444@gmail.com.
+
+## Report
+
+For detailed analysis and findings, refer to the [project report](https://docs.google.com/document/d/1yTNpM7xK5iCBFplQANdP4iecMMFU_AuP_N6o-1RD1e4/edit?usp=sharing).
