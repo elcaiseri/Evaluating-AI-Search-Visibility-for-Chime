@@ -32,7 +32,7 @@ class RAGSystem:
 
         self.retriever = self.vectorstore.as_retriever(
             search_type="mmr",
-            search_kwargs={'k': kwargs.get('k', 6)}
+            search_kwargs={'k': kwargs.get('k', 5)}
         )
         
         # Initialize the language model for generating insights
@@ -56,7 +56,7 @@ class RAGSystem:
         return "\n\n".join("Brand Page URL: ( " + str(doc.metadata["url"]) + " )" + "\n" + doc.page_content for doc in docs)
 
     def search(self, query):
-        """Generate an answer for the given query using the specified dataset."""
+        """Generate an answer for the given query."""
         logger.info(f"Generating answer for query: {query}")
         st = time()
         logger.info("Invoking QA chain...")

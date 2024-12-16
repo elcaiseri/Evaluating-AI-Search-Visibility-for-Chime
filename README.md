@@ -79,7 +79,7 @@ The project consists of:
 
 **Access the Application:**
 
-	Open your browser and go to `http://localhost:5500`.
+Open your browser and go to `http://localhost:5500`.
 
 ## API Documentation
 

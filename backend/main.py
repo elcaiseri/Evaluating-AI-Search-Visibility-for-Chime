@@ -12,7 +12,7 @@ print(f"Allowed Frontend URL: {FRONTEND_URL}")
 # Initialize FastAPI application
 app = FastAPI(
     title="RAG Backend System",
-    description="A FastAPI application for analyzing and comparing survey datasets using AI.",
+    description="A FastAPI application for Chime’s visibility and discoverability on AI search platforms",
     version="1.0.0"
 )
 

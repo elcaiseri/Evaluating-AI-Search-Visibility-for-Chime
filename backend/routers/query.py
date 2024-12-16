@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from routers.models import QueryRequest, QueryResponse
-from rag.survey import RAGSystem
+from rag.controller import RAGSystem
 from utils.logging import get_logger
 import uuid
 
@@ -21,8 +21,7 @@ def query_api(request: QueryRequest):
     logger.info(f"Request ID: {request_id}")
         
     query = request.query
-    dataset = request.dataset
-    logger.info(f"Received query: {query} for dataset: {dataset}")
+    logger.info(f"Received query: {query}")
 
     if not query:
         logger.error("Query cannot be empty")
