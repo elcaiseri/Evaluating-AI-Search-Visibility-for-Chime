@@ -165,3 +165,7 @@ Feel free to contribute to this project by opening issues or submitting pull req
 ## Report
 
 For detailed analysis and findings, refer to the [project report](https://docs.google.com/document/d/1yTNpM7xK5iCBFplQANdP4iecMMFU_AuP_N6o-1RD1e4/edit?usp=sharing).
+
+## Persentation
+
+[project persentation](https://docs.google.com/presentation/d/1tbXUmlNulbqfcptmlpRoEOedtgT4lAvEuiWDdBw-8zk/edit?usp=sharing)
