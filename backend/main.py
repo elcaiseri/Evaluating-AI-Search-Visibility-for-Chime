@@ -1,7 +1,8 @@
-from fastapi import FastAPI, Request, HTTPException, Depends
+import os
+
+from fastapi import Depends, FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from routers.query import router as query_router
-import os
 
 # Get frontend URL and API key from environment variables
 FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5500")
@@ -13,7 +14,7 @@ print(f"Allowed Frontend URL: {FRONTEND_URL}")
 app = FastAPI(
     title="RAG Backend System",
     description="A FastAPI application for Chime’s visibility and discoverability on AI search platforms",
-    version="1.0.0"
+    version="1.0.0",
 )
 
 # CORS middleware for the frontend only
@@ -25,18 +26,22 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 # Dependency to check API key
 def verify_api_key(request: Request):
     api_key = request.headers.get("x-api-key")
     if api_key != API_KEY:
         raise HTTPException(status_code=401, detail="Unauthorized")
 
+
 @app.get("/")
 async def index():
     return {"message": "Welcome to the FastAPI application"}
 
+
 @app.get("/health")
 async def health():
     return {"status": "healthy"}
+
 
 app.include_router(query_router, dependencies=[Depends(verify_api_key)])

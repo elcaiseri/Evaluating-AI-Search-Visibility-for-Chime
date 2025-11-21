@@ -1,9 +1,13 @@
-import os
-from langchain.prompts import PromptTemplate, ChatPromptTemplate, HumanMessagePromptTemplate
+from langchain.prompts import (
+    ChatPromptTemplate,
+    HumanMessagePromptTemplate,
+    PromptTemplate,
+)
 from utils.logging import get_logger
 
 # Initialize logger
 logger = get_logger(__name__)
+
 
 class PromptTemplateFactory:
     @staticmethod
@@ -11,11 +15,11 @@ class PromptTemplateFactory:
         """Define the updated prompt template for evaluating AI search visibility."""
         logger.info("Defining updated prompt template")
         return ChatPromptTemplate(
-            input_variables=['context', 'question'],
+            input_variables=["context", "question"],
             messages=[
                 HumanMessagePromptTemplate(
                     prompt=PromptTemplate(
-                        input_variables=['context', 'question'],
+                        input_variables=["context", "question"],
                         template=(
                             "You are a highly skilled assistant specializing in evaluating the AI search visibility "
                             "and discoverability of digital brands. Your task is to assess the visibility of the digital banking "
@@ -33,8 +37,8 @@ class PromptTemplateFactory:
                             "Question: {question}\n"
                             "Context: {context}\n"
                             "Answer:\n\n"
-                        )
+                        ),
                     )
                 )
-            ]
+            ],
         )
