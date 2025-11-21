@@ -1,18 +1,19 @@
 import json
-import requests
-from bs4 import BeautifulSoup
 import os
 import re
-from tqdm import tqdm
+
 import openai
+import requests
+from bs4 import BeautifulSoup
+from tqdm import tqdm
 
 urls = [
-    'https://www.ally.com/stories/save/',
-    'https://www.ally.com/stories/spend/',
+    "https://www.ally.com/stories/save/",
+    "https://www.ally.com/stories/spend/",
     "https://www.ally.com/stories/invest/",
     "https://www.ally.com/stories/protect/",
     "https://www.ally.com/stories/borrow/",
-    "https://www.ally.com/stories/inspire/"
+    "https://www.ally.com/stories/inspire/",
 ]
 
 urls += [
@@ -53,7 +54,7 @@ urls += [
     "https://www.ally.com/help/invest/self-directed/",
     "https://www.ally.com/help/invest/robo-portfolio/",
     "https://www.ally.com/help/invest/wealth-management/",
-    'https://www.ally.com/help/bank/savings-money-market/',
+    "https://www.ally.com/help/bank/savings-money-market/",
     "https://www.ally.com/help/home-loans/mortgage-get-started/",
     "https://www.ally.com/help/home-loans/mortgage-options/",
     "https://www.ally.com/help/home-loans/mortgage-preapproval/",
@@ -91,20 +92,19 @@ urls += [
     "https://www.ally.com/help/auto/message-center/",
     "https://www.ally.com/help/auto/documents/",
     "https://www.ally.com/help/auto/privacy-preferences/",
-    "https://www.ally.com/help/auto/special-handling/"
-    
+    "https://www.ally.com/help/auto/special-handling/",
 ]
 
 urls += [
     "https://www.capitalone.com/about/our-commitments/",
-    'https://www.capitalone.com/about/newsroom/',
+    "https://www.capitalone.com/about/newsroom/",
     "https://www.capitalone.com/about/insights-center/",
-    "https://www.capitalone.com/tech/"
+    "https://www.capitalone.com/tech/",
 ]
 
 urls += [
-    'https://www.capitalone.com/credit-cards/faq/',
-    'https://www.capitalone.com/auto-financing/faq/'
+    "https://www.capitalone.com/credit-cards/faq/",
+    "https://www.capitalone.com/auto-financing/faq/",
 ]
 
 urls += [
@@ -117,10 +117,10 @@ urls += [
     "https://www.chime.com/blog/category/managing-debt/",
     "https://www.chime.com/blog/category/taxes/",
     "https://www.chime.com/blog/category/chime-guides/",
-    "https://www.chime.com/blog/category/calculators/"
+    "https://www.chime.com/blog/category/calculators/",
 ]
 
-urls += ['https://www.chime.com/faq/']
+urls += ["https://www.chime.com/faq/"]
 
 urls += [
     "https://help.chime.com/hc/en-us/articles/5438300132631-What-is-SpotMe",
@@ -129,61 +129,73 @@ urls += [
     "https://help.chime.com/hc/en-us/articles/20824325253655-What-is-Chime-s-Virtual-Card",
     "https://help.chime.com/hc/en-us/articles/23317674703511-What-s-MyPay",
     "https://help.chime.com/hc/en-us/articles/1500011981082-What-s-a-temporary-credit",
-    "https://help.chime.com/hc/en-us/articles/221487887-What-is-the-Chime-Savings-Account"
+    "https://help.chime.com/hc/en-us/articles/221487887-What-is-the-Chime-Savings-Account",
 ]
 
 urls += ["https://www.sofi.com/blog/"]
 
-urls += ['https://www.sofi.com/faq/']
+urls += ["https://www.sofi.com/faq/"]
 
-urls += ['https://www.varomoney.com/blog/']
+urls += ["https://www.varomoney.com/blog/"]
 
 #############################################
+
 
 def scrap(url):
     response = requests.get(url)
     response.raise_for_status()
-    soup = BeautifulSoup(response.text, 'html.parser')
+    soup = BeautifulSoup(response.text, "html.parser")
     text = soup.get_text()
-    text = re.sub(r'\n+', '\n', text)
-    
+    text = re.sub(r"\n+", "\n", text)
+
     return text
+
 
 def collect_avilable_information(url):
     response = openai.ChatCompletion.create(
         model="gpt-4o-mini",
         messages=[
-            {"role": "system", "content": "You are a helpful assistant for a person who cannot search and read from a browser."},
-            {"role": "user", "content": f"Please provide a detailed information available at the following URL: {url}. Include key features, benefits, and any important considerations. (no bold)"}
+            {
+                "role": "system",
+                "content": "You are a helpful assistant for a person who cannot search and read from a browser.",
+            },
+            {
+                "role": "user",
+                "content": f"Please provide a detailed information available at the following URL: {url}. Include key features, benefits, and any important considerations. (no bold)",
+            },
         ],
         temperature=0.1,
-        max_tokens=5000
+        max_tokens=5000,
     )
 
-    text = response['choices'][0]['message']['content']
-    lines = text.split('\n')
-    return '\n'.join(lines[1:-1])
-    
+    text = response["choices"][0]["message"]["content"]
+    lines = text.split("\n")
+    return "\n".join(lines[1:-1])
+
+
 def main(urls, data_dir):
     # Create a directory to save the text files
     os.makedirs(data_dir, exist_ok=True)
     file2url = {}
-    
+
     for i, url in tqdm(enumerate(sorted(urls)), total=len(urls)):
-        file_path = f'{data_dir}/page_{i+1}.txt'
+        file_path = f"{data_dir}/page_{i + 1}.txt"
         file2url[file_path] = url
 
         try:
             text = scrap(url)
         except Exception as e:
             text = collect_avilable_information(url)
-            print(f'Failed to scrape: {url} with error {e}')
-            
-        with open(file_path, 'w', encoding='utf-8') as file: file.write(text)
+            print(f"Failed to scrape: {url} with error {e}")
+
+        with open(file_path, "w", encoding="utf-8") as file:
+            file.write(text)
 
     # Save the mapping of file to URL
-    with open(f'{data_dir}/file2url.json', 'w') as file: json.dump(file2url, file)
-    print('Scraping complete.')
+    with open(f"{data_dir}/file2url.json", "w") as file:
+        json.dump(file2url, file)
+    print("Scraping complete.")
 
-if __name__ == '__main__':
-    main(urls, '../backend/data')
+
+if __name__ == "__main__":
+    main(urls, "../backend/data")
