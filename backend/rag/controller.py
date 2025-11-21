@@ -1,12 +1,14 @@
 import os
 from time import time
 
+from datasets import Dataset
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
 from langchain_openai import ChatOpenAI
 from rag.document import DocumentLoader
 from rag.prompt import PromptTemplateFactory
 from rag.vector import VectorStore
+from ragas import evaluate
 from utils.logging import get_logger
 
 # Set your OpenAI API Key
