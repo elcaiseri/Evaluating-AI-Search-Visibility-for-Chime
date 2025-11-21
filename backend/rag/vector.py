@@ -8,7 +8,7 @@ from utils.logging import get_logger
 logger = get_logger(__name__)
 
 # Set your OpenAI API Key
-OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
+OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "")
 os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
 
 
