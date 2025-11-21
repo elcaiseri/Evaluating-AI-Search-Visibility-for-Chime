@@ -152,7 +152,7 @@ def scrap(url):
 
 
 def collect_avilable_information(url):
-    response = openai.ChatCompletion.create(
+    response = openai.chat.completions.create(
         model="gpt-4o-mini",
         messages=[
             {
@@ -168,9 +168,9 @@ def collect_avilable_information(url):
         max_tokens=5000,
     )
 
-    text = response["choices"][0]["message"]["content"]
-    lines = text.split("\n")
-    return "\n".join(lines[1:-1])
+    text = response.choices[0].message.content
+
+    return text or ""
 
 
 def main(urls, data_dir):
