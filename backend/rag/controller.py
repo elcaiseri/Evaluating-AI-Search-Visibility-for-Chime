@@ -80,7 +80,7 @@ class RAGSystem:
         st = time()
         logger.info("Invoking QA chain...")
         output = {"result": self.qa_chain.invoke(query)}
-        output["time_taken"] = time() - st
+        output["time_taken"] = str(time() - st)
         return output
 
     def evaluate_w_ragas(self, query, contexts, answer, ground_truth):

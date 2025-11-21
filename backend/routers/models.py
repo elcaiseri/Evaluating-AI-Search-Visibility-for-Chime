@@ -8,4 +8,4 @@ class QueryRequest(BaseModel):
 
 class QueryResponse(BaseModel):
     answer: str
-    time: float
+    time: str
